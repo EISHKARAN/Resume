@@ -1,0 +1,225 @@
+\documentclass[a4paper]{article}
+    \usepackage{hyperref}
+    \usepackage{fullpage}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{textcomp}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \textheight=5in
+    \pagestyle{empty}
+    \raggedright
+    \usepackage[left=0.4in,right=0.4in,bottom=0.3in,top=0.5in]{geometry}
+\usepackage{etoolbox,refcount}
+\usepackage{multicol}
+
+
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+  \stepcounter{nextitemizecount}%
+  \setcounter{countitems}{0}%
+  \preto\item{\stepcounter{countitems}}%
+}
+\makeatletter
+\newcommand{\computecountitems}{%
+  \edef\@currentlabel{\number\c@countitems}%
+  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\newcommand{\nextitemizecount}{%
+  \getrefnumber{countitems@\number\c@nextitemizecount}%
+}
+\newcommand{\previtemizecount}{%
+  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\makeatother    
+\newenvironment{AutoMultiColItemize}{%
+\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+\setupcountitems\begin{itemize}}%
+{\end{itemize}%
+\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
+
+
+    %\renewcommand{\encodingdefault}{cg}
+%\renewcommand{\rmdefault}{lgrcmr}
+
+\def\bull{\vrule height 0.7ex width .7ex depth -.1ex }
+
+% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+    pdftitle={Harsh's Resume},
+    pdfpagemode=FullScreen,
+    }
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2 
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \vspace*{-8pt} \\
+    \hspace*{-18pt} \hrulefill \\
+}
+
+\newcommand{\header} [1] {
+    {\hspace*{-18pt}\vspace*{6pt} \textsc{#1}}
+    \vspace*{-6pt} \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-8pt}
+}
+
+\newenvironment{achievements}{
+    \begin{list}
+        {$\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{4pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{5pt}
+}
+
+\newcommand{\school} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+% END RESUME DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{document}
+\vspace*{-40pt}
+
+    
+
+%==== Profile ====%
+\vspace*{-9pt}
+\begin{center}
+	{\Huge \scshape {Eishhkaran Singh}}\\
+	\vspace{2mm}
+	India $\cdot$ eishkaransingh@gmail.com $\cdot$ +91 7087694506 $\cdot$ \href{https://github.com/EISHKARAN}{GitHub} $\cdot$ \href{https://www.linkedin.com/in/eishkaran-singh/}{Linkedin} \\
+\end{center}
+
+\begin{center}
+Dedicated Data Scientist with hands-on experience in data analysis, machine learning, and programming. Skilled in using various tools and technologies to extract valuable insights from complex data sets.\\
+\end{center}
+\vspace{0.25mm}
+%==== Education ====%
+\header{Education}
+\vspace{0mm}
+\textbf{Thapar Institute of Engineering and Technology}\hfill Patiala\\
+BTech Computer  Engineering \hfill September 2021 - Present\\
+\vspace{0.5mm}
+\textbf{Indian Institute of Technology}\hfill Madras\\
+Bs Data Science and Applications \hfill January 2022 - Present\\
+\vspace{1mm}
+
+ 
+% \header{Position of Responsibility }
+% \vspace{0mm}
+
+% \textbf{GNU/Linux Users Club} \hfill IIIT Bhopal \\
+% \textit{Club Secretary} \hfill August 2022 - Present\\
+% \vspace{-2.5mm}
+% \begin{itemize} \itemsep 1pt
+% 	\item Using MacOS as my main distribution but I also have experience in most Debian based (Ubuntu), Fedora and Arch based Distributions
+% 		\item Guiding batch mates to install and use Linux distributions comfortably. Also in-charge of troubleshooting problems for them. 
+% \end{itemize}
+
+\vspace{0.5mm}
+\header{Experience}
+
+
+{\textbf{Thapar Institute of Engineering and Technology}}\hfill June 2023 - Present \\
+ {\textit{Research Intern under prof(Dr.) Sachin Kansal }}  \
+\vspace{-2.5mm}
+\begin{itemize} 
+\item Developed an efficient pipeline for extracting frames from video data, utilising advanced image processing techniques, parallel processing, and error handling. 
+\vspace{-3mm}
+\item Optimised the pipeline's performance, enabling swift extraction of frames from large-scale video datasets while ensuring accuracy and data integrity.
+\end{itemize}
+{\textbf{Thapar Institute of Engineering and Technology}}\hfill June 2023 \\
+ {\textit{Guest Lecturer}}  \
+\vspace{-1.5mm}
+\begin{itemize} 
+\item Invited as guest of  honour to deliver the lecture in Thapar summer School of Machine learning and deep Learning and delivered 3 lectures on Image Processing
+\end{itemize}
+
+\header{Projects/Achievements}
+
+{\textbf{PixelMind AI}} \hfill May 2023 \\
+\vspace{-1mm}
+\url{https://www.linkedin.com/feed/update/urn:li:activity:7069568789318635520/} \\
+\vspace{-1.5mm}
+\begin{itemize} 
+	\item Paradox’23 organised by Indian Institute of Technology Madras domain of Image enhancement
+    \item Bagged 2nd Position and won a cash Prize of 50K amongst various working professionals 
+\end{itemize}
+{\textbf{Kaggle 2X- Expert}} \hfill June 2023 \\
+\vspace{-1mm}
+\url{https://www.kaggle.com/eishkaran} \\
+\vspace{-2mm}
+\begin{itemize} 
+	\item On my Kaggle Profile , I have demonstrated my ability to analyse datasets and create effective solutions. My notebooks have been recognised with bronze medals.I have been awarded with 16 bronze medals till now
+    \item By leveraging my skills in exploratory data analysis and algorithm tutorials. I have established myself as a 2x-Kaggle expert and I am committed to continuing to hone my skills in this field 
+    \item BirdCLEF 2023 (Organised by Cornell Lab of Ornithology on Kaggle Platform) Got a rank of 169 out of 1189 teams participating all across the globe and was in top 15\%  in which I predicted the sounds of the birds using the PyTorch and applied various DL algorithms 
+
+    
+\end{itemize}
+{\textbf{CycleGan }} \hfill June 2023\\
+\vspace{-1mm}
+\url{https://github.com/EISHKARAN/CycleGan} \\
+\vspace{-2mm}
+\begin{itemize} 
+    \item Utilising my expertise in PyTorch and TensorFlow, I made and implemented a robust CycleGAN solution for generating high-quality Monet-style images from ordinary photographs and ranked 19th out of 39 teams
+\end{itemize}
+{\textbf{Stock Prices Prediction}} \hfill June 2023 \\
+\vspace{0.5mm}
+\url{https://github.com/EISHKARAN/Stock-Prediction-using-LSTM} \\
+\vspace{-2mm}
+\begin{itemize} 
+	\item I undertook a comprehensive project leveraging Yahoo Finance's time series dataset, wherein I applied advanced techniques to predict the Close prices of diverse stocks.
+    \item Through meticulous data processing, feature engineering, and model optimisation, I built robust predictive models, providing valuable insights
+\end{itemize}
+{\textbf{Blogs }} \hfill April 2023\\
+\vspace{-1mm}
+\url{https://medium.com/@eishkaransingh} \\
+\vspace{-2mm}
+\begin{itemize} 
+    \item I have authored concise and insightful technical blog posts on machine learning and statistics for data science, fostering knowledge sharing and intellectual growth within the community.
+\end{itemize}
+\header{Skills}
+\vspace{2mm}
+\begin{tabular}{ l l }
+	Programming Languages: & Python, C++ ,C  \\
+	\vspace{1mm}
+	Database Management Systems: & MySQL , Oracle \\ 
+	Web Development:       & HTML , CSS, JavaScript   \\
+	Libraries / Frameworks: & Pandas, Numpy, Seaborn, matploblib, Plotly, XGBoost, scikit-learn, OpenCv        \\
+	MACHINE LEARNING:             & Regression, Classification, Clustering, Neural Networks, Deep Learning\\
+	Soft Skills:           &  Public Speaking, Leadership  \\
+	
+\end{tabular}
+
+
+\vspace{2mm}
+\header{MISCELLANEOUS}
+{\textbf{Career Certificates }} \hfill Jan 2023\\  \\Python, MySQL, Pandas, Supervised Machine Learning\\ 
+{\textbf{Silver Zone Olympiad }} \hfill September 2020\\  \\International Informatics Olympiad\\ 
+\end{document}
